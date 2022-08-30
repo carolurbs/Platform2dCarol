@@ -76,7 +76,7 @@ public class Player : MonoBehaviour
         myRigidbody.transform.DOScaleX(jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
     }
 
-     void OnCollisionEnter2D(Collision2D collision)
+    /* void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.tag =="floor")
         {
@@ -86,5 +86,5 @@ public class Player : MonoBehaviour
 
             DOTween.Kill(myRigidbody.transform);
         }
-    }
+    }*/
 }
