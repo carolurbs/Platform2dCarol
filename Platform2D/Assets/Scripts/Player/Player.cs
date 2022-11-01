@@ -13,10 +13,16 @@ public class Player : MonoBehaviour
     private float _currentSpeed;
     public float forceJump = 2;
     [Header("Animation Setup")]
-    public float jumpScaleY = 1.5f;
+    public float jumpScaleY = .5f;
     public float jumpScaleX = -.5f;
     public float animationDuration = .3f;
     public Ease ease = Ease.OutBack;
+
+    [Header("Animation Payer")]
+    public string triggerRun = "Run";
+    public Animator animator;
+    public float playerSwipeduration= .1f; 
+
 
     void Update()
     {
@@ -30,22 +36,41 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.LeftControl))
         {
             _currentSpeed = speedRun;
+            animator.speed = 2; 
+
         }
         else
         {
-            _currentSpeed = speed;
+            _currentSpeed = speed; 
+            animator.speed = 1;
 
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             //myRigidbody.MovePosition(myRigidbody.position-velocity*Time.deltaTime);
             myRigidbody.velocity = new Vector2(-_currentSpeed, myRigidbody.velocity.y);
+           if (myRigidbody.transform.localScale.x !=-1)
+            {
+                myRigidbody.transform.DOScaleX (-1, playerSwipeduration);
 
+            }
+            animator.SetBool(triggerRun, true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
             myRigidbody.velocity = new Vector2(_currentSpeed, myRigidbody.velocity.y);
+            if (myRigidbody.transform.localScale.x != 1)
+            {
+                myRigidbody.transform.DOScaleX(1, playerSwipeduration);
+
+            }
+            animator.SetBool(triggerRun, true);
+
+        }
+        else
+        {
+            animator.SetBool(triggerRun, false);
 
         }
         if (myRigidbody.velocity.x>0)
