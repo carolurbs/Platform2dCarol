@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7469195704042690834}
   - component: {fileID: 4010603986710180916}
   - component: {fileID: 8917696993688714774}
+  - component: {fileID: 1816328102637568244}
   m_Layer: 0
   m_Name: PFB_Projectile
   m_TagString: Untagged
@@ -60,6 +61,22 @@ SortingGroup:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
+--- !u!58 &1816328102637568244
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2718332693343805538}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!1 &8255230310156067187
 GameObject:
   m_ObjectHideFlags: 0
@@ -70,7 +87,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7818386958050846131}
   - component: {fileID: 3929958867762582303}
-  - component: {fileID: 6476611830909693399}
+  - component: {fileID: 8435349989333779653}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -133,7 +150,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.85098046, g: 0.058823533, b: 0.9450981, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -143,19 +160,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &6476611830909693399
-CircleCollider2D:
+--- !u!122 &8435349989333779653
+Halo:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8255230310156067187}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.6
+  m_Color:
+    serializedVersion: 2
+    rgba: 4293988313
+  m_Size: 13.64
