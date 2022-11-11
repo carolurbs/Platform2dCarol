@@ -2,15 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ebac.Core.Singleton;
+using TMPro;
+
 
 public class ItemManager : Singleton<ItemManager>
 {
     public int coins;
-   
-    private void Awake()
+    public TextMeshProUGUI amountUI;
+
+    new private void Awake()
     {
+        base.Awake();
         Reset();
-        
+
     }
     private void Reset()
     {
@@ -18,6 +22,11 @@ public class ItemManager : Singleton<ItemManager>
     }
     public void AddCoins(int amount = 1)
     {
-        coins+=amount;
+        coins += amount;
+    }
+
+    private void Update()
+    {
+        amountUI.text= coins.ToString();
     }
 }
