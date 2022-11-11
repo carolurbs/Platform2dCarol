@@ -18,8 +18,5 @@ public class ItemCollectableBase: MonoBehaviour
         gameObject.SetActive(false);
         OnCollect();
     }
-    protected virtual void OnCollect()
-    {
-
-    }
+    protected virtual void OnCollect(){}
 }
