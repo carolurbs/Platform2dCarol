@@ -1736,11 +1736,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8007466312498025151, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
   m_PrefabInstance: {fileID: 1532150009}
   m_PrefabAsset: {fileID: 0}
---- !u!95 &526665022 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 6413013834153556191, guid: 00afc9fb4087652419d090da0b825d97, type: 3}
-  m_PrefabInstance: {fileID: 1532150009}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &532748597
 GameObject:
   m_ObjectHideFlags: 0
@@ -2253,6 +2248,7 @@ GameObject:
   - component: {fileID: 705136651}
   - component: {fileID: 705136653}
   - component: {fileID: 705136652}
+  - component: {fileID: 705136654}
   m_Layer: 5
   m_Name: Text (TMP)
   m_TagString: Untagged
@@ -2376,6 +2372,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 705136650}
   m_CullTransparentMesh: 1
+--- !u!114 &705136654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 705136650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72d592c86363fc84b9f53c2b011c8499, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soInt: {fileID: 11400000, guid: 4ef4137aedaf6f54087b08de042f3a09, type: 2}
+  uiTextValue: {fileID: 705136652}
 --- !u!1001 &710904474
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2748,18 +2758,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myRigidbody: {fileID: 806942460}
-  friction: {x: -0.3, y: 0}
-  speed: 15
-  speedRun: 20
-  forceJump: 25
-  jumpScaleY: 1.1
-  jumpScaleX: 0.5
-  animationDuration: 0.3
+  friction: {x: -0.1, y: 0}
+  speed: 0
+  speedRun: 0
+  forceJump: 2
+  soJumpScaleY: {fileID: 0}
+  soJumpScaleX: {fileID: 0}
+  soAnimationDuration: {fileID: 0}
   ease: 27
   triggerRun: Run
   triggerDeath: Death
-  animator: {fileID: 526665022}
-  playerSwipeduration: 0.5
+  animator: {fileID: 0}
+  playerSwipeduration: 0.1
   healthBase: {fileID: 806942465}
 --- !u!114 &806942465
 MonoBehaviour:
@@ -5440,7 +5450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ac61c8e3a1f3044d9ef738a8af384da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coins: 0
+  coins: {fileID: 11400000, guid: 4ef4137aedaf6f54087b08de042f3a09, type: 2}
   amountUI: {fileID: 705136652}
 --- !u!4 &1930350543
 Transform:
