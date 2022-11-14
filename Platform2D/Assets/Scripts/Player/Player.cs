@@ -10,113 +10,118 @@ public class Player : MonoBehaviour
     public HealthBase healthBase;
     private bool _isRunning;
     private float _currentSpeed;
-    [Header("SO Setup")]
+    public Animator animator;
     public SO_PlayerSetup soPlayer;
 
 
+ 
+
+  
+
     private void Awake()
-    {
-        if(healthBase !=null)
-        {
-            healthBase.OnKill +=OnPlayerKill;   
-        }
-    }
-    private void  OnPlayerKill()
-    {
-        healthBase.OnKill -= OnPlayerKill;
-       soPlayer.animator.SetTrigger(soPlayer.triggerDeath);
-    }
-    void Update()
-    {
-        VerticalMoviment();
-        HorizontalMoviment();
-    }
+     {
+         if(healthBase !=null)
+         {
+             healthBase.OnKill +=OnPlayerKill;   
+         }
+     }
+     private void  OnPlayerKill()
+     {
+         healthBase.OnKill -= OnPlayerKill;
+        animator.SetTrigger(soPlayer.triggerDeath);
+     }
+     void Update()
+     {
+         VerticalMoviment();
+         HorizontalMoviment();
+     }
 
-    void  HorizontalMoviment()
+     void  HorizontalMoviment()
 
-    {
-        if (Input.GetKey(KeyCode.LeftControl))
-        {
-            _currentSpeed = soPlayer.speedRun;
-            soPlayer.animator.speed = 2; 
+     {
+         if (Input.GetKey(KeyCode.LeftControl))
+         {
+             _currentSpeed = soPlayer.speedRun;
+             animator.speed = 2; 
 
-        }
-        else
-        {
-            _currentSpeed = soPlayer.speed; 
-            soPlayer.animator.speed = 1;
+         }
+         else
+         {
+             _currentSpeed = soPlayer.speed; 
+             animator.speed = 1;
 
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            //myRigidbody.MovePosition(myRigidbody.position-velocity*Time.deltaTime);
-            myRigidbody.velocity = new Vector2(-_currentSpeed, myRigidbody.velocity.y);
-           if (myRigidbody.transform.localScale.x !=-1)
-            {
-                myRigidbody.transform.DOScaleX (-1, soPlayer.playerSwipeduration);
+         }
+         if (Input.GetKey(KeyCode.LeftArrow))
+         {
+             //myRigidbody.MovePosition(myRigidbody.position-velocity*Time.deltaTime);
+             myRigidbody.velocity = new Vector2(-_currentSpeed, myRigidbody.velocity.y);
+            if (myRigidbody.transform.localScale.x !=-1)
+             {
+                 myRigidbody.transform.DOScaleX (-1, soPlayer.playerSwipeduration);
 
-            }
-            soPlayer. animator.SetBool(soPlayer.triggerRun, true);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
-            myRigidbody.velocity = new Vector2(_currentSpeed, myRigidbody.velocity.y);
-            if (myRigidbody.transform.localScale.x != 1)
-            {
-                myRigidbody.transform.DOScaleX(1, soPlayer.playerSwipeduration);
+             }
+              animator.SetBool(soPlayer.triggerRun, true);
+         }
+         else if (Input.GetKey(KeyCode.RightArrow))
+         {
+             //myRigidbody.MovePosition(myRigidbody.position + velocity * Time.deltaTime);
+             myRigidbody.velocity = new Vector2(_currentSpeed, myRigidbody.velocity.y);
+             if (myRigidbody.transform.localScale.x != 1)
+             {
+                 myRigidbody.transform.DOScaleX(1, soPlayer.playerSwipeduration);
 
-            }
-            soPlayer.animator.SetBool(soPlayer.triggerRun, true);
+             }
+            animator.SetBool(soPlayer.triggerRun, true);
 
-        }
-        else
-        {
-            soPlayer.animator.SetBool(soPlayer.triggerRun, false);
+         }
+         else
+         {
+            animator.SetBool(soPlayer.triggerRun, false);
 
-        }
-        if (myRigidbody.velocity.x>0)
-        {
-            myRigidbody.velocity += soPlayer.friction;
-        }
-        else if (myRigidbody.velocity.x<0)
-        {
-            myRigidbody.velocity -= soPlayer.friction;
+         }
+         if (myRigidbody.velocity.x>0)
+         {
+             myRigidbody.velocity += soPlayer.friction;
+         }
+         else if (myRigidbody.velocity.x<0)
+         {
+             myRigidbody.velocity -= soPlayer.friction;
 
-        }
-    }
-    void VerticalMoviment()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            myRigidbody.velocity = Vector2.up * soPlayer.forceJump;
-            myRigidbody.transform.localScale = Vector2.one;
+         }
+     }
+     void VerticalMoviment()
+     {
+         if (Input.GetKeyDown(KeyCode.Space))
+         {
+             myRigidbody.velocity = Vector2.up * soPlayer.forceJump;
+             myRigidbody.transform.localScale = Vector2.one;
 
-            DOTween.Kill(myRigidbody.transform);
+             DOTween.Kill(myRigidbody.transform);
 
-            HandleScaleJump();
-        }
-    }
-    private void HandleScaleJump()
-    {
-        myRigidbody.transform.DOScaleY(soPlayer.jumpScaleY, soPlayer.animationDuration).SetLoops(2,LoopType.Yoyo).SetEase(soPlayer.ease);
-        myRigidbody.transform.DOScaleX(soPlayer.jumpScaleX., soPlayer.animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayer.ease);
-    }
+             HandleScaleJump();
+         }
+     }
+     private void HandleScaleJump()
+     {
+         myRigidbody.transform.DOScaleY(soPlayer.jumpScaleY, soPlayer.animationDuration).SetLoops(2,LoopType.Yoyo).SetEase(soPlayer.ease);
+         myRigidbody.transform.DOScaleX(soPlayer.jumpScaleX, soPlayer.animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayer.ease);
 
-    public void DestroyMe()
-    {
-        Destroy(gameObject);
-    }
+     }
 
-    /* void OnCollisionEnter2D(Collision2D collision)
-    {
-        if(collision.gameObject.tag =="floor")
-        {
-            myRigidbody.transform.DOScaleY(-jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-            myRigidbody.transform.DOScaleX(-jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
-            myRigidbody.transform.localScale = Vector2.one;
+     public void DestroyMe()
+     {
+         Destroy(gameObject);
+     }
 
-            DOTween.Kill(myRigidbody.transform);
-        }
-    }*/
+     /* void OnCollisionEnter2D(Collision2D collision)
+     {
+         if(collision.gameObject.tag =="floor")
+         {
+             myRigidbody.transform.DOScaleY(-jumpScaleY, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+             myRigidbody.transform.DOScaleX(-jumpScaleX, animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(ease);
+             myRigidbody.transform.localScale = Vector2.one;
+
+             DOTween.Kill(myRigidbody.transform);
+         }
+     }*/
 }

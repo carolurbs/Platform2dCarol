@@ -27,6 +27,6 @@ public class ItemManager : Singleton<ItemManager>
 
     private void Update()
     {
-        //amountUI.text= coins.value.ToString();
+        amountUI.text= coins.value.ToString();
     }
 }
