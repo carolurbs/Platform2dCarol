@@ -94,9 +94,9 @@ public class Player : MonoBehaviour
          if (Input.GetKeyDown(KeyCode.Space))
          {
              myRigidbody.velocity = Vector2.up * soPlayer.forceJump;
-             myRigidbody.transform.localScale = Vector2.one;
+          //  myRigidbody.transform.localScale = Vector2.one;
 
-             DOTween.Kill(myRigidbody.transform);
+            DOTween.Kill(myRigidbody.transform);
 
              HandleScaleJump();
          }
@@ -104,8 +104,19 @@ public class Player : MonoBehaviour
      private void HandleScaleJump()
      {
          myRigidbody.transform.DOScaleY(soPlayer.jumpScaleY, soPlayer.animationDuration).SetLoops(2,LoopType.Yoyo).SetEase(soPlayer.ease);
-         myRigidbody.transform.DOScaleX(soPlayer.jumpScaleX, soPlayer.animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayer.ease);
+       // myRigidbody.transform.DOScaleX(soPlayer.jumpScaleX, soPlayer.animationDuration).SetLoops(2, LoopType.Yoyo).SetEase(soPlayer.ease);
+        float initialScalex = 1;
+        DOTween.To( delegate(float value)
+           {
+                int currentDirection = transform.localScale.x > 0 ? 1 : -1;
+                float currentScale =Mathf.Abs(initialScalex)+(soPlayer.jumpScaleX-Mathf.Abs(initialScalex))*value;
+                currentScale *= currentDirection;
+                var scale =transform.localScale;
+                scale.x *= currentScale;
+                transform.localScale = scale;
 
+        },
+        0,1,soPlayer.animationDuration).SetEase(soPlayer.ease).SetLoops(2,LoopType.Yoyo);
      }
 
      public void DestroyMe()
