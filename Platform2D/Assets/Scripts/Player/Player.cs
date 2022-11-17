@@ -112,7 +112,7 @@ public class Player : MonoBehaviour
                 float currentScale =Mathf.Abs(initialScalex)+(soPlayer.jumpScaleX-Mathf.Abs(initialScalex))*value;
                 currentScale *= currentDirection;
                 var scale =transform.localScale;
-                scale.x *= currentScale;
+                scale.x = currentScale;
                 transform.localScale = scale;
 
         },
