@@ -25,6 +25,7 @@ public class EnemyBase : MonoBehaviour
         healthBase.OnKill -= OnEnemyKill;
         PlayDeathAnimaton();
         Destroy(gameObject,timeToDestroy);
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
