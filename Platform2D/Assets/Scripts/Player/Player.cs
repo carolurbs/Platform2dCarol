@@ -99,8 +99,10 @@ public class Player : MonoBehaviour
             DOTween.Kill(myRigidbody.transform);
 
              HandleScaleJump();
-         }
-     }
+            animator.SetTrigger(soPlayer.triggerJump);
+
+        }
+    }
      private void HandleScaleJump()
      {
          myRigidbody.transform.DOScaleY(soPlayer.jumpScaleY, soPlayer.animationDuration).SetLoops(2,LoopType.Yoyo).SetEase(soPlayer.ease);
