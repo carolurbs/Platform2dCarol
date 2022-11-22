@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     private float _currentSpeed;
     public Animator animator;
     public SO_PlayerSetup soPlayer;
-
+    
 
  
 
@@ -93,14 +93,17 @@ public class Player : MonoBehaviour
      {
          if (Input.GetKeyDown(KeyCode.Space))
          {
-             myRigidbody.velocity = Vector2.up * soPlayer.forceJump;
+            animator.SetTrigger(soPlayer.triggerJump);
+
+            myRigidbody.velocity = Vector2.up * soPlayer.forceJump;
           //  myRigidbody.transform.localScale = Vector2.one;
 
             DOTween.Kill(myRigidbody.transform);
 
              HandleScaleJump();
-         }
-     }
+
+        }
+    }
      private void HandleScaleJump()
      {
          myRigidbody.transform.DOScaleY(soPlayer.jumpScaleY, soPlayer.animationDuration).SetLoops(2,LoopType.Yoyo).SetEase(soPlayer.ease);
