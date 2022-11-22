@@ -8,11 +8,9 @@ using TMPro;
 public class ItemManager : Singleton<ItemManager>
 {
     public SOInt coins;
-    public TextMeshProUGUI amountUI;
-    public TextMeshProUGUI ammoUI;
-
     public SOInt ammo;
-
+    public HealthBase health;
+    public TextMeshProUGUI lifeUI;
     new private void Awake()
     {
         base.Awake();
@@ -29,16 +27,21 @@ public class ItemManager : Singleton<ItemManager>
         coins.value += amount;
     }
 
-    /*private void Update()
+    private void Update()
     {
-        amountUI.text= coins.value.ToString();
-        ammoUI.text = ammo.value.ToString();
+        lifeUI.text= health._currentLife.ToString();
 
-    }*/
+    }
 
     public void AddAmmo(int fire =1)
     {
         ammo.value += fire;
+    }
+
+    public void AddLife (int life= 1)
+    {
+        if(health._isDead==false) health._currentLife += life; 
+
     }
 }
 

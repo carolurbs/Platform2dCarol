@@ -9,13 +9,14 @@ public class EnemyBase : MonoBehaviour
     public string triggerAtack = "Attack";
     public string triggerDeath = "Death";
     public float timeToDestroy = 1f;
-
     public HealthBase healthBase;
- private void Awake()
+    public SO_EnemyDropSetup enemyLoot;
+    private void Awake()
     {
-        if (healthBase!=null)
+        if (healthBase != null)
         {
-            healthBase.OnKill += OnEnemyKill; 
+            healthBase.OnKill += OnEnemyKill;
+            enemyLoot.enemyposition =transform.position;
         }
 
     }
@@ -24,8 +25,8 @@ public class EnemyBase : MonoBehaviour
     {
         healthBase.OnKill -= OnEnemyKill;
         PlayDeathAnimaton();
-        Destroy(gameObject,timeToDestroy);
-
+        Destroy(gameObject, timeToDestroy);
+        Drop();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -45,8 +46,16 @@ public class EnemyBase : MonoBehaviour
     {
         animator.SetTrigger(triggerDeath);
     }
-    public void Damage(int amount )
+    public void Damage(int amount)
     {
-        healthBase.Damage(amount); 
+        healthBase.Damage(amount);
+    }
+
+    private void Drop()
+    {
+        {
+            Instantiate(enemyLoot.loot[Random.Range(enemyLoot.minValue, enemyLoot.maxValue)], new Vector2(enemyLoot.enemyposition.x, enemyLoot.enemyposition.y), Quaternion.identity);
+            Debug.Log("Drop");
+        }
     }
 }

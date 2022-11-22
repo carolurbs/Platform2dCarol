@@ -7,8 +7,8 @@ public class HealthBase : MonoBehaviour
 {
     public Action OnKill;
     public int startLife = 10;
-    private int _currentLife;
-    private bool _isDead=false;
+    public int _currentLife;
+    public  bool _isDead=false;
     public bool destroyOnKill = false;
     public float delayToKill = .2f;
     [SerializeField]private FlashColor _flashColor;
