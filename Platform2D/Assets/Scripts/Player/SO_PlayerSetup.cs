@@ -22,6 +22,5 @@ public class SO_PlayerSetup : ScriptableObject
     [Header("Animation Payer")]
     public string triggerRun = "Run";
     public string triggerDeath = "Death";
-    public string triggerJump = "Jump";
     public float playerSwipeduration = .1f;
 }
