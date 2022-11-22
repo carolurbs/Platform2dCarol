@@ -22,4 +22,5 @@ MonoBehaviour:
   ease: 27
   triggerRun: Run
   triggerDeath: Death
+  triggerJump: Jump
   playerSwipeduration: 0.1
