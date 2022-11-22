@@ -39,9 +39,6 @@ TagManager:
   - 
   - 
   m_SortingLayers:
-  - name: Ammo
-    uniqueID: 2468301793
-    locked: 0
   - name: Scene
     uniqueID: 1524266063
     locked: 0

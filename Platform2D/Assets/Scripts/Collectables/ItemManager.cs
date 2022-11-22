@@ -9,9 +9,6 @@ public class ItemManager : Singleton<ItemManager>
 {
     public SOInt coins;
     public TextMeshProUGUI amountUI;
-    public TextMeshProUGUI ammoUI;
-
-    public SOInt ammo;
 
     new private void Awake()
     {
@@ -22,23 +19,14 @@ public class ItemManager : Singleton<ItemManager>
     private void Reset()
     {
         coins.value = 0;
-        ammo.value = 5; 
     }
     public void AddCoins(int amount = 1)
     {
         coins.value += amount;
     }
 
-    /*private void Update()
+    private void Update()
     {
         amountUI.text= coins.value.ToString();
-        ammoUI.text = ammo.value.ToString();
-
-    }*/
-
-    public void AddAmmo(int fire =1)
-    {
-        ammo.value += fire;
     }
 }
-
