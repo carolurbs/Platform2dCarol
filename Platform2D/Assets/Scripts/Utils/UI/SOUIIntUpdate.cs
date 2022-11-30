@@ -5,7 +5,7 @@ using TMPro;
 
 public class SOUIIntUpdate : MonoBehaviour
 {
-    public SOInt soInt;
+    public SOInt soInt; 
     public TextMeshProUGUI uiTextValue;
     void Start()
     {
@@ -15,6 +15,6 @@ public class SOUIIntUpdate : MonoBehaviour
     void Update()
     {
         uiTextValue.text = soInt.value.ToString();
-
+        
     }
 }

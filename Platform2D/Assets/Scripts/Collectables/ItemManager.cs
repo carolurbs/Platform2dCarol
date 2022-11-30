@@ -8,6 +8,7 @@ public class ItemManager : Singleton<ItemManager>
 {
     public SOInt coins;
     public SOInt ammo;
+    public SO_HealthSetup health;
     new private void Awake()
     {
         base.Awake();
@@ -31,6 +32,9 @@ public class ItemManager : Singleton<ItemManager>
         ammo.value += fire;
     }
 
-   
+    public void AddLife(int life = 1)
+    {
+        health._currentLife += life;
+    }
 }
 

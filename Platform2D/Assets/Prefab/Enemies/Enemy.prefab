@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3365dd1415676d3429a545bd6f963f9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 5
+  soHealth: {fileID: 11400000, guid: 0397784a84947c84fbe9bc970083af30, type: 2}
   destroyOnKill: 0
   delayToKill: 0.2
   _flashColor: {fileID: 3826602698607750603}

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement; 
 
 public class Player : MonoBehaviour
 {
@@ -12,9 +13,6 @@ public class Player : MonoBehaviour
     private float _currentSpeed;
     public Animator animator;
     public SO_PlayerSetup soPlayer;
-    
-
- 
 
   
 
@@ -22,13 +20,15 @@ public class Player : MonoBehaviour
      {
          if(healthBase !=null)
          {
-             healthBase.OnKill +=OnPlayerKill;   
-         }
-     }
+             healthBase.OnKill +=OnPlayerKill;
+
+        }
+    }
      private void  OnPlayerKill()
      {
          healthBase.OnKill -= OnPlayerKill;
         animator.SetTrigger(soPlayer.triggerDeath);
+       // SceneManager.LoadScene(0);
      }
      void Update()
      {

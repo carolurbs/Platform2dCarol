@@ -7,6 +7,8 @@ using DG.Tweening;
 [CreateAssetMenu]
 public class SO_PlayerSetup : ScriptableObject
 {
+    [Header("General Setup")]
+    public HealthBase healthBase;
 
     [Header("Speed Setup")]
     public Vector2 friction = new Vector2(-.1f, 0);

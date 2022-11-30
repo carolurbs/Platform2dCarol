@@ -9,8 +9,6 @@ public class GameManager : Singleton<GameManager>
     [Header("Player")]
     public GameObject playerPrefab;
 
-    [Header("Enemies")]
-    public List<GameObject> enemies;
 
     [Header("References")]
     public Transform startPoint;
