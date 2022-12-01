@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Ebac.Core.Singleton;
 using DG.Tweening;
-
+using Cinemachine;
 public class GameManager : Singleton<GameManager> 
 {
+    [Header("Cinemachine")]
+    public CinemachineVirtualCamera virtualCamera;
+
     [Header("Player")]
     public GameObject playerPrefab;
 
@@ -33,5 +36,7 @@ public class GameManager : Singleton<GameManager>
         _currentPlayer=Instantiate(playerPrefab);
         _currentPlayer.transform.position = startPoint.transform.position;
         _currentPlayer.transform.DOScale(0,duration).SetEase(ease).From().SetDelay(delay);
+        virtualCamera.Follow= _currentPlayer.transform;
+        virtualCamera.LookAt = _currentPlayer.transform;
     }
 }

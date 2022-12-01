@@ -32,7 +32,7 @@ public class HealthBase : MonoBehaviour
     {
         if (_isDead) return;
         soHealth._currentLife -= damage;
-        if (soHealth._currentLife < 0)
+        if (soHealth._currentLife <= 0)
         {
             Kill();
         }
