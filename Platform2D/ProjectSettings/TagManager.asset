@@ -39,6 +39,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: VFX
+    uniqueID: 568047325
+    locked: 0
   - name: Ammo
     uniqueID: 2468301793
     locked: 0
