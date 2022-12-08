@@ -14,7 +14,10 @@ public class Player : MonoBehaviour
     public Animator animator;
     public SO_PlayerSetup soPlayer;
 
-  
+    [Header("Jump Setup")]
+    public Collider2D myCollider2D;
+    public float distToGround;
+    public float spaceToGround=.1f;
 
     private void Awake()
      {
@@ -23,6 +26,16 @@ public class Player : MonoBehaviour
              healthBase.OnKill +=OnPlayerKill;
 
         }
+         if(myCollider2D != null)
+        {
+            distToGround=myCollider2D.bounds.extents.y;
+        }
+
+    }
+    private bool IsGrounded()
+    {
+      Debug. DrawRay(transform.position,-Vector2.up, Color.white, distToGround+spaceToGround);
+        return Physics2D.Raycast(transform.position,- Vector2.up, distToGround + spaceToGround);
     }
      private void  OnPlayerKill()
      {
@@ -34,6 +47,7 @@ public class Player : MonoBehaviour
      {
          VerticalMoviment();
          HorizontalMoviment();
+        IsGrounded();
      }
 
      void  HorizontalMoviment()
@@ -91,7 +105,7 @@ public class Player : MonoBehaviour
      }
      void VerticalMoviment()
      {
-         if (Input.GetKeyDown(KeyCode.Space))
+         if (Input.GetKeyDown(KeyCode.Space)&& IsGrounded())
          {
             animator.SetTrigger(soPlayer.triggerJump);
 
