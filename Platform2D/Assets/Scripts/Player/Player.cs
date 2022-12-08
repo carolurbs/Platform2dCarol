@@ -13,7 +13,8 @@ public class Player : MonoBehaviour
     private float _currentSpeed;
     public Animator animator;
     public SO_PlayerSetup soPlayer;
-
+    public ParticleSystem particleRun;
+    public ParticleSystem particleJump;
     [Header("Jump Setup")]
     public Collider2D myCollider2D;
     public float distToGround;
@@ -34,7 +35,7 @@ public class Player : MonoBehaviour
     }
     private bool IsGrounded()
     {
-      Debug. DrawRay(transform.position,-Vector2.up, Color.white, distToGround+spaceToGround);
+      Debug. DrawRay(transform.position,-Vector2.up, Color.magenta, distToGround+spaceToGround);
         return Physics2D.Raycast(transform.position,- Vector2.up, distToGround + spaceToGround);
     }
      private void  OnPlayerKill()
@@ -75,6 +76,7 @@ public class Player : MonoBehaviour
 
              }
               animator.SetBool(soPlayer.triggerRun, true);
+            particleRun.Play();
          }
          else if (Input.GetKey(KeyCode.RightArrow))
          {
@@ -86,9 +88,10 @@ public class Player : MonoBehaviour
 
              }
             animator.SetBool(soPlayer.triggerRun, true);
+            particleRun.Play();
 
-         }
-         else
+        }
+        else
          {
             animator.SetBool(soPlayer.triggerRun, false);
 
@@ -108,7 +111,7 @@ public class Player : MonoBehaviour
          if (Input.GetKeyDown(KeyCode.Space)&& IsGrounded())
          {
             animator.SetTrigger(soPlayer.triggerJump);
-
+            particleJump.Play();
             myRigidbody.velocity = Vector2.up * soPlayer.forceJump;
           //  myRigidbody.transform.localScale = Vector2.one;
 
