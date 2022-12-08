@@ -9,6 +9,12 @@ public class EnemyBase : MonoBehaviour
     public string triggerAtack = "Attack";
     public string triggerDeath = "Death";
     public float timeToDestroy = 1f;
+    protected Vector3 velocity;
+   [SerializeField] protected float speed;
+    protected Vector3 target;
+    protected Vector3 previousPosition;
+     protected bool flipped;
+    [SerializeField]protected Transform[] waypoints; 
     public HealthBase healthBase;
     public SO_EnemyDropSetup enemyLoot;
     public ParticleSystem deathVFX;
@@ -23,7 +29,59 @@ public class EnemyBase : MonoBehaviour
         }
 
     }
+    private void Start()
+    {
+         Init();
+    }
+    public virtual void Init()
+    {
+        animator = GetComponentInChildren<Animator>();
+        target = waypoints[1].position;
+    }
+    public virtual void  Update()
+    {
+        Movement();
+    }
+    public virtual IEnumerator SetTarget(Vector3 position)
+    {
+        yield return new WaitForSeconds(5f);
+        target=position;
+        FaceTowards(position - transform.position);
+    }
+    public virtual void FaceTowards(Vector3 direction)
+    {
+        if (direction.x < 0f) transform.localEulerAngles = new Vector3(0, 180, 0);
+        else transform.localEulerAngles = new Vector3(0, 0, 0);
+    }
 
+    public virtual void Movement()
+    {
+        velocity = ((transform.position - previousPosition) / Time.deltaTime);
+        previousPosition=transform.position;
+        if(transform.position!=target)
+        {
+            transform.position = Vector3.MoveTowards(transform.position,target,speed*Time.deltaTime);
+        }
+        else
+        {
+            if(target==waypoints[0].position)
+            {
+                if (flipped)
+                {
+                    flipped = !flipped;
+                    StartCoroutine("SetTarget", waypoints[1].position);
+                }
+            }
+            else
+            {
+                if(!flipped)
+                {
+                    flipped = !flipped;
+                    StartCoroutine("SetTarget", waypoints[0].position);
+                }
+            }
+        }
+    }
     private void OnEnemyKill()
     {
         healthBase.OnKill -= OnEnemyKill;
