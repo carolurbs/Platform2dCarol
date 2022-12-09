@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7367530ff02dfb94599e34de4746a655, type: 3}
   m_Name: SO_Enemy Drop
   m_EditorClassIdentifier: 
-  enemyTipe: Enemy 2
+  enemyTipe: 'Enemy '
   loot:
   - {fileID: 7719203283471525091, guid: 78c8dd58d8824a14c9e221c121067007, type: 3}
   - {fileID: 931762727997007242, guid: 19cd2f9d2e3042b44955e602add1db22, type: 3}
   - {fileID: 808472502088053036, guid: 6ef415b0fe7e4294a9870461827fb513, type: 3}
-  enemyposition: {x: 49.03, y: -8.72}
-  minValue: 3
-  maxValue: 5
+  enemyposition: {x: 2.81, y: -5.19}
+  minValue: 0
+  maxValue: 3
