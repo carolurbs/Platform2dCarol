@@ -18,7 +18,7 @@ public class ItemManager : Singleton<ItemManager>
     private void Reset()
     {
         coins.value = 0;
-        ammo.value = 5; 
+        ammo.value = 15; 
     }
     public void AddCoins(int amount = 1)
     {

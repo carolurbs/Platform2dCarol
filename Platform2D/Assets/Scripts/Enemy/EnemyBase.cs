@@ -20,11 +20,11 @@ public class EnemyBase : MonoBehaviour
     public ParticleSystem deathVFX;
     private void Awake()
     {
+        if(deathVFX != null)   deathVFX.transform.SetParent(null);
         if (healthBase != null)
         {
             healthBase.OnKill += OnEnemyKill;
             enemyLoot.enemyposition =transform.position;
-            if (deathVFX != null) deathVFX.transform.SetParent(null);
 
         }
 
@@ -86,9 +86,9 @@ public class EnemyBase : MonoBehaviour
     {
         healthBase.OnKill -= OnEnemyKill;
         PlayDeathAnimaton();
+        deathVFX.Play();
         Destroy(gameObject, timeToDestroy);
         Drop();
-        deathVFX.Play();
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
