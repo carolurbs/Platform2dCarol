@@ -20,7 +20,6 @@ public class EnemyBase : MonoBehaviour
     public ParticleSystem deathVFX;
     private void Awake()
     {
-        if(deathVFX != null)   deathVFX.transform.SetParent(null);
         if (healthBase != null)
         {
             healthBase.OnKill += OnEnemyKill;
@@ -50,8 +49,8 @@ public class EnemyBase : MonoBehaviour
     }
     public virtual void FaceTowards(Vector3 direction)
     {
-        if (direction.x < 0f) transform.localEulerAngles = new Vector3(0, 180, 0);
-        else transform.localEulerAngles = new Vector3(0, 0, 0);
+        if (direction.x < 0f) transform.localEulerAngles = new Vector3(0, 0, 0);
+        else transform.localEulerAngles = new Vector3(0, 180, 0);
     }
 
     public virtual void Movement()
@@ -86,6 +85,7 @@ public class EnemyBase : MonoBehaviour
     {
         healthBase.OnKill -= OnEnemyKill;
         PlayDeathAnimaton();
+        if (deathVFX != null) deathVFX.transform.SetParent(null);
         deathVFX.Play();
         Destroy(gameObject, timeToDestroy);
         Drop();

@@ -102,6 +102,10 @@ MonoBehaviour:
   soPlayer: {fileID: 11400000, guid: d4261703715d82e4c9ceb4b09bd2ac3e, type: 2}
   particleRun: {fileID: 2734946598091918669}
   particleJump: {fileID: 6534484331972420531}
+  endgameUI: {fileID: 4136784519887170599, guid: eb74445ac1933af42a1bd6f25d020fe5, type: 3}
+  leveCompletedUI: {fileID: 4676043250674609949, guid: 368bdb61382e80e498a58aa811be267f, type: 3}
+  compareTag: EndLevel
+  hudUI: {fileID: 7228258283340720417, guid: 2ada2a99af701d6459622eef76274908, type: 3}
   myCollider2D: {fileID: 4065926186993940617}
   distToGround: 0
   spaceToGround: 0.1

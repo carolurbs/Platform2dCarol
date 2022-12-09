@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.SceneManagement; 
 
 public class Player : MonoBehaviour
 {
@@ -15,6 +14,10 @@ public class Player : MonoBehaviour
     public SO_PlayerSetup soPlayer;
     public ParticleSystem particleRun;
     public ParticleSystem particleJump;
+    public GameObject endgameUI;
+    public GameObject leveCompletedUI;
+    public string compareTag = "EndLevel";
+    public GameObject hudUI;
     [Header("Jump Setup")]
     public Collider2D myCollider2D;
     public float distToGround;
@@ -31,6 +34,9 @@ public class Player : MonoBehaviour
         {
             distToGround=myCollider2D.bounds.extents.y;
         }
+         endgameUI.SetActive(false);
+        hudUI.SetActive(true);
+        leveCompletedUI.SetActive(false);
 
     }
     private bool IsGrounded()
@@ -42,13 +48,38 @@ public class Player : MonoBehaviour
      {
          healthBase.OnKill -= OnPlayerKill;
         animator.SetTrigger(soPlayer.triggerDeath);
-       // SceneManager.LoadScene(0);
+        Invoke(nameof(LoseGame), 1f);
      }
-     void Update()
+    private void LoseGame()
+    {
+        endgameUI.SetActive(true);
+        hudUI.SetActive(false);
+        leveCompletedUI.SetActive(false);
+
+    }
+    private void LevelComplete()
+    {
+        hudUI.SetActive(false);
+        endgameUI.SetActive(false);
+        leveCompletedUI.SetActive(true);
+        
+    }
+
+    
+      private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.transform.CompareTag(compareTag))
+            {
+                Invoke(nameof(LevelComplete), .5f);
+            }
+        }
+    
+    void Update()
      {
          VerticalMoviment();
          HorizontalMoviment();
-        IsGrounded();
+         IsGrounded();
+
      }
 
      void  HorizontalMoviment()
