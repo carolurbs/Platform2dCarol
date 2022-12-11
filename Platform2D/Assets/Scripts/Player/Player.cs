@@ -14,10 +14,10 @@ public class Player : MonoBehaviour
     public SO_PlayerSetup soPlayer;
     public ParticleSystem particleRun;
     public ParticleSystem particleJump;
-    public GameObject endgameUI;
-    public GameObject leveCompletedUI;
+    private GameObject endgameUI;
+    private GameObject levelCompletedUI;
+    private GameObject hudUI;
     public string compareTag = "EndLevel";
-    public GameObject hudUI;
     [Header("Jump Setup")]
     public Collider2D myCollider2D;
     public float distToGround;
@@ -34,9 +34,17 @@ public class Player : MonoBehaviour
         {
             distToGround=myCollider2D.bounds.extents.y;
         }
-         endgameUI.SetActive(false);
+       
+
+    }
+    private void Start()
+    {
+        endgameUI = UIManager.Instance.endGameUI;
+        endgameUI.SetActive(false);
+        hudUI = UIManager.Instance.hudUI;
         hudUI.SetActive(true);
-        leveCompletedUI.SetActive(false);
+        levelCompletedUI = UIManager.Instance.levelCompletedUI;
+        levelCompletedUI.SetActive(false);
 
     }
     private bool IsGrounded()
@@ -48,20 +56,20 @@ public class Player : MonoBehaviour
      {
          healthBase.OnKill -= OnPlayerKill;
         animator.SetTrigger(soPlayer.triggerDeath);
-        Invoke(nameof(LoseGame), 1f);
+        Invoke(nameof(LoseGame), .5f);
      }
     private void LoseGame()
     {
         endgameUI.SetActive(true);
         hudUI.SetActive(false);
-        leveCompletedUI.SetActive(false);
+        levelCompletedUI.SetActive(false);
 
     }
     private void LevelComplete()
     {
         hudUI.SetActive(false);
         endgameUI.SetActive(false);
-        leveCompletedUI.SetActive(true);
+        levelCompletedUI.SetActive(true);
         
     }
 
@@ -70,7 +78,7 @@ public class Player : MonoBehaviour
         {
             if (collision.transform.CompareTag(compareTag))
             {
-                Invoke(nameof(LevelComplete), .5f);
+                Invoke(nameof(LevelComplete), .1f);
             }
         }
     
