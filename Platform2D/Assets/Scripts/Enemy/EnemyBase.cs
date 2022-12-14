@@ -18,6 +18,7 @@ public class EnemyBase : MonoBehaviour
     public HealthBase healthBase;
     public SO_EnemyDropSetup enemyLoot;
     public ParticleSystem deathVFX;
+
     private void Awake()
     {
         if (healthBase != null)
@@ -81,6 +82,7 @@ public class EnemyBase : MonoBehaviour
             }
         }
     }
+  
     private void OnEnemyKill()
     {
         healthBase.OnKill -= OnEnemyKill;

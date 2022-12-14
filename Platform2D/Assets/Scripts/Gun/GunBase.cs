@@ -11,6 +11,7 @@ public class GunBase : MonoBehaviour
     public float timeBetweenShoot = .3f;
     private Coroutine _currentCoroutine;
     public Transform playerSideReference;
+    public AudioSource audioSource;
     // Update is called once per frame
     void Update()
     {
@@ -38,6 +39,7 @@ public class GunBase : MonoBehaviour
         {
             Shoot();
             yield return new WaitForSeconds(timeBetweenShoot);
+            if(audioSource!=null)audioSource.Play();
         }
     }
     public void Shoot()
