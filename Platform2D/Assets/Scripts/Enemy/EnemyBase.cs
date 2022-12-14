@@ -18,7 +18,8 @@ public class EnemyBase : MonoBehaviour
     public HealthBase healthBase;
     public SO_EnemyDropSetup enemyLoot;
     public ParticleSystem deathVFX;
-
+    public AudioSource deathSFX;
+    public AudioSource attackSFX;
     private void Awake()
     {
         if (healthBase != null)
@@ -86,6 +87,7 @@ public class EnemyBase : MonoBehaviour
     private void OnEnemyKill()
     {
         healthBase.OnKill -= OnEnemyKill;
+        if (deathSFX != null) deathSFX.Play();
         PlayDeathAnimaton();
         if (deathVFX != null) deathVFX.transform.SetParent(null);
         deathVFX.Play();
@@ -98,6 +100,7 @@ public class EnemyBase : MonoBehaviour
         var health = collision.gameObject.GetComponent<HealthBase>();
         if (health != null)
         {
+            if (attackSFX!=null) attackSFX.Play();
             health.Damage(damage);
             PlayAttackAnimaton();
         }
